@@ -15,22 +15,10 @@ public class Shuffler {
 	 * @param args is not used.
 	 */
 	public static void main(String[] args) {
-		System.out.println("Results of " + SHUFFLE_COUNT +
-								 " consecutive perfect shuffles:");
-		int[] values1 = {0, 1, 2, 3};
-		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			perfectShuffle(values1);
-			System.out.print("  " + j + ":");
-			for (int k = 0; k < values1.length; k++) {
-				System.out.print(" " + values1[k]);
-			}
-			System.out.println();
-		}
-		System.out.println();
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
+		int[] values2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -40,36 +28,6 @@ public class Shuffler {
 			System.out.println();
 		}
 		System.out.println();
-	}
-
-
-	/**
-	 * Apply a "perfect shuffle" to the argument.
-	 * The perfect shuffle algorithm splits the deck in half, then interleaves
-	 * the cards in one half with the cards in the other.
-	 * @param values is an array of integers simulating cards to be shuffled.
-	 */
-	public static void perfectShuffle(int[] values) {
-	  int[] temp = new int[values.length];
-      int mid = (values.length + 1) / 2;
-    
-      // Interleave elements 0 ... mid-1 with elements mid ... length-1
-      int unshuffledPos = 0;
-      int k = 0;
-      for ( ; k < mid; k++) {
-       temp[unshuffledPos] = values[k];
-       unshuffledPos += 2;
-      }
-      unshuffledPos = 1;
-      for ( ; k < values.length; k++) {
-       temp[unshuffledPos] = values[k];
-       unshuffledPos += 2;
-      }
-    
-      // Copy elements back to values
-      for (k = 0; k < values.length; k++) {
-       values[k] = temp[k];
-      }
 	}
 
 	/**
